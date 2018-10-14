@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cjgmj.testSpringRest.entity.Player;
@@ -29,6 +30,13 @@ public class PlayerController {
 	public ResponseEntity<List<Player>> listPlayers(){
 		LOG.info("listPlayers()");
 		List<Player> players = playerService.listAllPlayers();
+		return new ResponseEntity<List<Player>>(players, HttpStatus.OK);
+	}
+	
+	@GetMapping("/top5Nationality/{nationality}")
+	public  ResponseEntity<List<Player>> top5Nationality(@PathVariable(value="nationality") String nationality){
+		LOG.info("top5Nationality()");
+		List<Player> players = playerService.findTop5ByNationality(nationality);
 		return new ResponseEntity<List<Player>>(players, HttpStatus.OK);
 	}
 
