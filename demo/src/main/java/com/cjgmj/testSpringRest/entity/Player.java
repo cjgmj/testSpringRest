@@ -36,11 +36,14 @@ public class Player{
 	@Column(name = "surname", nullable = false)
 	private String surname;
 
+	@Column(name = "nationality", nullable = false)
+	private String nationality;
+
+	@Column(name = "position", nullable = false)
+	private String position;
+	
 	@Column(name = "birthdate", nullable = false)
 	private LocalDateTime birthdate;
-
-	@Column(name = "age")
-	private int age;
 
 	@Column(name = "height")
 	private String height;

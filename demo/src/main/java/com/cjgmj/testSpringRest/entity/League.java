@@ -37,9 +37,6 @@ public class League{
 	@Column(name = "amountTeams", nullable = false)
 	private int amountTeams;
 
-	@Column(name = "director")
-	private String director;
-
 	@Column(name = "actualChampion")
 	private String actualChampion;
 
