@@ -39,5 +39,12 @@ public class PlayerController {
 		List<Player> players = playerService.findTop5ByNationality(nationality);
 		return new ResponseEntity<List<Player>>(players, HttpStatus.OK);
 	}
+	
+	@GetMapping("/top1League/{league}")
+	public  ResponseEntity<Player> top1League(@PathVariable(value="league") String league){
+		LOG.info("top1League()");
+		Player player = playerService.findTop1ByLeague(league);
+		return new ResponseEntity<Player>(player, HttpStatus.OK);
+	}
 
 }

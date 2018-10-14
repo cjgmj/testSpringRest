@@ -33,7 +33,7 @@ public class Team {
 	@Id
 	@GeneratedValue
 	@Column(name = "id")
-	private int id;
+	private Integer id;
 
 	@Column(name = "name", nullable = false)
 	private String name;

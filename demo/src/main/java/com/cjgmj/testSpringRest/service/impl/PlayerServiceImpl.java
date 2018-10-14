@@ -27,4 +27,9 @@ public class PlayerServiceImpl implements PlayerService{
 		return playerRepository.findTop5ByNationality(nationality);
 	}
 
+	@Override
+	public Player findTop1ByLeague(String league) {
+		return playerRepository.findTop1ByLeague(league);
+	}
+
 }

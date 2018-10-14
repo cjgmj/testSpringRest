@@ -28,7 +28,7 @@ public class Player{
 	@Id
 	@GeneratedValue
 	@Column(name = "id", nullable = false)
-	private int id;
+	private Integer id;
 
 	@Column(name = "name", nullable = false)
 	private String name;
@@ -47,6 +47,9 @@ public class Player{
 
 	@Column(name = "height")
 	private String height;
+
+	@Column(name = "rate")
+	private Integer rate;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "team", nullable = false)
