@@ -2,6 +2,8 @@ package com.cjgmj.testSpringRest.repository;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -16,11 +18,15 @@ public interface PlayerRepository extends CrudRepository<Player, Serializable>{
 	List<Player> findTop5ByNationality(String nationality);
 	
 	@Query("SELECT p FROM Player p WHERE p.team.league.name=:league ORDER BY p.rate DESC, p.surname DESC")
-	List<Player> top1ByLeague(@Param("league") String league);
+	Stream<Player> firstByLeague(@Param("league") String league);
 	
-	default Player findTop1ByLeague(String league){
-		List<Player> list = top1ByLeague(league);
-	    return list.get(0);
+	default Player findFirstByLeague(String league){
+		Optional<Player> player = firstByLeague(league).findFirst();
+		
+		if(player.isPresent())
+			return player.get();
+		
+		return null;
 	};
 	
 }

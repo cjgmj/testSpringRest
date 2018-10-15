@@ -10,6 +10,6 @@ public interface PlayerService {
 	
 	public abstract List<Player> findTop5ByNationality(String nationality);
 	
-	public abstract Player findTop1ByLeague(String league);
+	public abstract Player findFirstByLeague(String league);
 
 }

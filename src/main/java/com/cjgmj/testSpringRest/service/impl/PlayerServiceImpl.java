@@ -28,8 +28,8 @@ public class PlayerServiceImpl implements PlayerService{
 	}
 
 	@Override
-	public Player findTop1ByLeague(String league) {
-		return playerRepository.findTop1ByLeague(league);
+	public Player findFirstByLeague(String league) {
+		return playerRepository.findFirstByLeague(league);
 	}
 
 }
