@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "player", uniqueConstraints = @UniqueConstraint(columnNames = { "id", "team" }))
-public class Player{
+public class Player {
 
 	@Id
 	@GeneratedValue

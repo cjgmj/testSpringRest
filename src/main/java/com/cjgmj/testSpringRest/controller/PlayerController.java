@@ -2,8 +2,6 @@ package com.cjgmj.testSpringRest.controller;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +41,6 @@ public class PlayerController {
 	}
 	
 	@GetMapping("/top1League/{league}")
-	@Transactional
 	public  ResponseEntity<Player> top1League(@PathVariable(value="league") String league){
 		LOG.info("top1League()");
 		Player player = playerService.findFirstByLeague(league);

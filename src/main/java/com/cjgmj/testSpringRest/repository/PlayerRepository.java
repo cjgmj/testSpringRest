@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cjgmj.testSpringRest.entity.Player;
 
@@ -20,6 +21,7 @@ public interface PlayerRepository extends CrudRepository<Player, Serializable>{
 	@Query("SELECT p FROM Player p WHERE p.team.league.name=:league ORDER BY p.rate DESC, p.surname DESC")
 	Stream<Player> firstByLeague(@Param("league") String league);
 	
+	@Transactional(readOnly=true)
 	default Player findFirstByLeague(String league){
 		Optional<Player> player = firstByLeague(league).findFirst();
 		
