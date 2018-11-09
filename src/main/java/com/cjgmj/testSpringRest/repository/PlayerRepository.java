@@ -2,14 +2,11 @@ package com.cjgmj.testSpringRest.repository;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cjgmj.testSpringRest.entity.Player;
 
@@ -18,17 +15,9 @@ public interface PlayerRepository extends CrudRepository<Player, Serializable>{
 
 	List<Player> findTop5ByNationality(String nationality);
 	
-	@Query("SELECT p FROM Player p WHERE p.team.league.name=:league ORDER BY p.rate DESC, p.surname DESC")
-	Stream<Player> firstByLeague(@Param("league") String league);
-	
-	@Transactional(readOnly=true)
-	default Player findFirstByLeague(String league){
-		Optional<Player> player = firstByLeague(league).findFirst();
-		
-		if(player.isPresent())
-			return player.get();
-		
-		return null;
-	};
+	@Query(value = "SELECT * FROM player p INNER JOIN team t ON p.team=t.id INNER JOIN league l ON t.league=l.id "
+			+ "WHERE l.name=:league ORDER BY p.rate DESC, p.surname DESC LIMIT 1", 
+			nativeQuery = true)
+	Player findFirstByLeague(@Param("league") String league);
 	
 }
